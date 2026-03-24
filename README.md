@@ -155,7 +155,7 @@ Options:
 Pull proxies from 12+ public sources:
 
 ```bash
-python3 socks5-toolkit/main.py scrape --out output/raw.txt
+python3 main.py scrape --out output/raw.txt
 ```
 
 This fetches from:
@@ -184,7 +184,7 @@ All scraped proxies are **deduplicated** and **filtered** (private IP ranges, lo
 The most useful command — scrape all sources, then validate every proxy:
 
 ```bash
-python3 socks5-toolkit/main.py scrape-check --workers 150 --out output/alive.json --format json
+python3 main.py scrape-check --workers 150 --out output/alive.json --format json
 ```
 
 Full workflow:

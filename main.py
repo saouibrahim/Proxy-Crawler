@@ -26,11 +26,12 @@ import sys
 import time
 
 # ── Make sure src/ is on the path ─────────────────────────────────────────────
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "src"))
 
-from scraper       import scrape_all, scrape_from_file, SOURCES
+from scraper import scrape_all, scrape_from_file, SOURCES
 from socks5_checker import check_proxy, check_proxies_bulk
-from formatters     import to_table, summary, save, to_plain_text
+from formatters import to_table, summary, save, to_plain_text
 
 
 # ── Logging ────────────────────────────────────────────────────────────────────
