@@ -1,6 +1,6 @@
 # SOCKS5 Proxy Toolkit
 
-A complete, dependency-free Python toolkit for **scraping**, **validating**, and **managing** free SOCKS5 proxies.  
+A complete, dependency-free Python3 toolkit for **scraping**, **validating**, and **managing** free SOCKS5 proxies.  
 Built on a solid understanding of the SOCKS protocol — RFC 1928 (SOCKS v5) and RFC 1929 (username/password auth).
 
 ```
@@ -77,7 +77,7 @@ This toolkit reproduces steps 1–5 to determine whether a proxy is alive and re
 ## Requirements
 
 - **Python 3.8+**  
-- **Zero external dependencies** — uses only Python's standard library (`socket`, `struct`, `threading`, `concurrent.futures`, `urllib.request`, `csv`, `json`, `argparse`)
+- **Zero external dependencies** — uses only Python3's standard library (`socket`, `struct`, `threading`, `concurrent.futures`, `urllib.request`, `csv`, `json`, `argparse`)
 
 ---
 
@@ -87,7 +87,7 @@ This toolkit reproduces steps 1–5 to determine whether a proxy is alive and re
 git clone https://github.com/you/socks5-toolkit
 cd socks5-toolkit
 # No pip install needed — stdlib only
-python main.py --help
+python3 main.py --help
 ```
 
 ---
@@ -99,19 +99,19 @@ python main.py --help
 Immediately test one proxy with a full SOCKS5 handshake:
 
 ```bash
-python main.py probe 1.2.3.4:1080
+python3 main.py probe 1.2.3.4:1080
 ```
 
 With username/password authentication (RFC 1929):
 
 ```bash
-python main.py probe 1.2.3.4:1080 -u alice -p secret
+python3 main.py probe 1.2.3.4:1080 -u alice -p secret
 ```
 
 Custom test target and timeout:
 
 ```bash
-python main.py probe 1.2.3.4:1080 --test-host google.com --test-port 443 --timeout 8
+python3 main.py probe 1.2.3.4:1080 --test-host google.com --test-port 443 --timeout 8
 ```
 
 Exit code is `0` if alive, `1` if dead — suitable for scripting.
@@ -123,7 +123,7 @@ Exit code is `0` if alive, `1` if dead — suitable for scripting.
 Check all proxies in a file concurrently:
 
 ```bash
-python main.py check --input proxies.txt --out output/results.json --format json
+python3 main.py check --input proxies.txt --out output/results.json --format json
 ```
 
 The input file can contain proxies in any common format:
@@ -155,7 +155,7 @@ Options:
 Pull proxies from 12+ public sources:
 
 ```bash
-python socks5-toolkit/main.py scrape --out output/raw.txt
+python3 socks5-toolkit/main.py scrape --out output/raw.txt
 ```
 
 This fetches from:
@@ -184,7 +184,7 @@ All scraped proxies are **deduplicated** and **filtered** (private IP ranges, lo
 The most useful command — scrape all sources, then validate every proxy:
 
 ```bash
-python socks5-toolkit/main.py scrape-check --workers 150 --out output/alive.json --format json
+python3 socks5-toolkit/main.py scrape-check --workers 150 --out output/alive.json --format json
 ```
 
 Full workflow:
@@ -263,7 +263,7 @@ When you save to a non-`.txt` format, a companion `_alive.txt` plain-text file i
 
 ## Using the toolkit as a library
 
-```python
+```python3
 from src.socks5_checker import check_proxy, check_proxies_bulk, SOCKS5Handshake
 from src.scraper import scrape_all
 from src.formatters import to_json, save
@@ -298,7 +298,7 @@ save(results, "output/alive.json", fmt="json", alive_only=True)
 All 15 tests use only stdlib — no external test runner needed:
 
 ```bash
-python tests/test_toolkit.py -v
+python3 tests/test_toolkit.py -v
 ```
 
 Expected output:
