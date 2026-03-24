@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 """
-socks5-toolkit  –  CLI entry point
 ====================================
 
 Usage examples:
