@@ -26,8 +26,8 @@ Unlike HTTP proxies that only handle web traffic, SOCKS proxies can relay **any 
 
 ### SOCKS v4 vs v5
 
-| Feature | SOCKS v4 | SOCKS v5 |
-|---|---|---|
+| Feature     | SOCKS v4 | SOCKS v5 |
+|   ---       |    ---   |    ---   |
 | TCP support | ✓ | ✓ |
 | UDP support | ✗ | ✓ |
 | Authentication | Ident (RFC 931) only | Username/Password, GSSAPI |
@@ -42,27 +42,27 @@ This toolkit targets **SOCKS v5 exclusively** (Cisco SWA/WSA also drops v4 suppo
 ```
 Client                                     SOCKS Proxy
   │                                              │
-  │── Client Negotiation ─────────────────────► │
+  │── Client Negotiation ─────────────────────►  │
   │   VER=5 | NMETHODS | METHODS[]               │
   │                                              │
-  │◄─ Server Negotiation ───────────────────── │
-  │   VER=5 | METHOD (chosen)                   │
+  │◄─ Server Negotiation ─────────────────────   │
+  │   VER=5 | METHOD (chosen)                    │
   │                                              │
   │── Authentication (RFC 1929, if required) ──► │
-  │   VER=1 | ULEN | UNAME | PLEN | PASSWD      │
+  │   VER=1 | ULEN | UNAME | PLEN | PASSWD       │
   │                                              │
-  │◄─ Auth Reply ──────────────────────────── │
-  │   VER=1 | STATUS (0=ok)                     │
+  │◄─ Auth Reply ────────────────────────────    │
+  │   VER=1 | STATUS (0=ok)                      │
   │                                              │
-  │── Client Request ───────────────────────── ►│
-  │   VER=5 | CMD=CONNECT | RSV | ATYP          │
+  │── Client Request ───────────────────────── ► │
+  │   VER=5 | CMD=CONNECT | RSV | ATYP           │
   │   DST.ADDR | DST.PORT                        │
   │                                              │
-  │◄─ Server Reply ────────────────────────── │
-  │   VER=5 | REP=0x00 (success) | RSV | ATYP  │
+  │◄─ Server Reply ──────────────────────────    │
+  │   VER=5 | REP=0x00 (success) | RSV | ATYP    │
   │   BND.ADDR | BND.PORT                        │
   │                                              │
-  │◄════════════ Data flows freely ══════════►  │
+  │◄════════════ Data flows freely ══════════►   │
 ```
 
 The proxy then:
