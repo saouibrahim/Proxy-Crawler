@@ -110,10 +110,10 @@ PROXY_LINES=()
 for line in "${RAW_LINES[@]}"; do
   line="${line//$'\r'/}"   # strip CR (Windows line endings)
   # Extract ip:port pattern
-  if [[ "$line" =~ ^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})[: ]([0-9]{2,5})$ ]]; then
+  if [[ "$line" =~ ^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):([0-9]{2,5})$ ]]; then
     ip="${BASH_REMATCH[1]}"
     port="${BASH_REMATCH[2]}"
-    if [[ "$port" -ge 1 && "$port" -le 65535 ]]; then
+    if [[ "$port" -ge 1 ]] && [[ "$port" -le 65535 ]]; then
       PROXY_LINES+=("socks5  ${ip}  ${port}")
     fi
   fi
